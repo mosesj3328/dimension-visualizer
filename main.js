@@ -92,7 +92,11 @@ for (let i = 0; i < numPoints; i++) {
     for (let j = i + 1; j < numPoints; j++) {
         const p1 = originalHyperspherePoints[i];
         const p2 = originalHyperspherePoints[j];
-        const dist = p1.distanceTo(p2);
+        const dx = p1.x - p2.x;
+        const dy = p1.y - p2.y;
+        const dz = p1.z - p2.z;
+        const dw = p1.w - p2.w;
+        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz + dw * dw);
         if (dist < 0.5) { // Threshold for connecting points
             edges.push(i, j);
         }
